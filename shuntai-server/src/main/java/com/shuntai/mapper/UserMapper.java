@@ -1,6 +1,6 @@
 package com.shuntai.mapper;
 
-import com.templates.model.bean.UserBean;
+import com.shuntai.model.bean.UserBean;
 
 /**
  * Created by hadoop on 2016/8/31.

@@ -1,7 +1,7 @@
 package com.shuntai.controller;
 
-import com.templates.model.bean.UserBean;
-import com.templates.server.UserServer;
+import com.shuntai.model.bean.UserBean;
+import com.shuntai.server.UserServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

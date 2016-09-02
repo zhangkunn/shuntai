@@ -1,7 +1,7 @@
 package com.shuntai.server;
 
-import com.templates.mapper.UserMapper;
-import com.templates.model.bean.UserBean;
+import com.shuntai.mapper.UserMapper;
+import com.shuntai.model.bean.UserBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,7 @@
 package com.shuntai;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -17,13 +18,14 @@ import javax.sql.DataSource;
  * Created by hadoop on 2016/8/30.
  */
 @SpringBootApplication
-@MapperScan(value = "com.templates.mapper") //加载包内的Mapper接口
+@MapperScan(value = "com.shuntai.mapper") //加载包内的Mapper接口
 public class ApplicationMain {
+    static Logger logger = Logger.getLogger(ApplicationMain.class);
 
     public static void main(String[] args) {
 
         SpringApplication.run(ApplicationMain.class, args);
-        System.out.println("server is running!");
+        logger.info("server is running!");
     }
 
     @Bean
