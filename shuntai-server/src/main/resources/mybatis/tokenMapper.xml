@@ -9,6 +9,9 @@
         select accessToken,createTime from token where id=1;
     </select>
 
+
+
+
     <update id="updateToken" parameterType="com.foxinmy.weixin4j.model.Token">
         update token SET accessToken=#{accessToken},createTime=#{createTime}
         where id=1
