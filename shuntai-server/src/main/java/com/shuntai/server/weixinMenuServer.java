@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.foxinmy.weixin4j.exception.WeixinException;
 import com.foxinmy.weixin4j.http.weixin.WeixinRequestExecutor;
 import com.foxinmy.weixin4j.http.weixin.WeixinResponse;
+import com.foxinmy.weixin4j.model.Button;
 import com.foxinmy.weixin4j.type.ButtonType;
 import com.shuntai.model.bean.WeixinButton;
 import com.shuntai.model.bean.WeixinConf;
