@@ -6,3 +6,11 @@
 .idea/.name
 
 shuntai-server/.idea/.name
+
+*.xml
+
+shuntai-server/LOG_PATH_IS_UNDEFINED/.DS_Store
+
+*.log
+
+shuntai-server/.DS_Store
