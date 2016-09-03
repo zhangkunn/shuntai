@@ -5,6 +5,8 @@ import com.shuntai.model.bean.UserBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by hadoop on 2016/8/31.
  */
@@ -15,8 +17,8 @@ public class UserServer {
     @Autowired(required=true)
     private UserMapper userMapper;
 
-    public UserBean getUser(){
-        UserBean user=userMapper.getAllUsers();
+    public List<UserBean> getUser(){
+        List<UserBean> user=userMapper.getAllUsers();
         return user;
     }
 }

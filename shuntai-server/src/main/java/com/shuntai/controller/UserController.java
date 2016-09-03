@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Created by hadoop on 2016/8/31.
  */
@@ -21,10 +23,10 @@ public class UserController {
 
     @RequestMapping("/getAllUsers")
     @ResponseBody
-    public UserBean getUserInfo() {
-        UserBean user = userServer.getUser();
+    public List<UserBean> getUserInfo() {
+        List<UserBean> user = userServer.getUser();
         if(user!=null){
-            System.out.println("user.getName():"+user.getName());
+            System.out.println("user.getName():"+user.toString());
         }
         return user;
     }
