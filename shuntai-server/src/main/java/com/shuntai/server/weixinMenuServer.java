@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.foxinmy.weixin4j.exception.WeixinException;
 import com.foxinmy.weixin4j.http.weixin.WeixinRequestExecutor;
 import com.foxinmy.weixin4j.http.weixin.WeixinResponse;
-import com.foxinmy.weixin4j.model.Button;
 import com.foxinmy.weixin4j.type.ButtonType;
 import com.shuntai.model.bean.WeixinButton;
 import com.shuntai.model.bean.WeixinConf;
@@ -25,9 +24,9 @@ import java.util.Map;
  */
 
 @Service
-public class WeixinMenuServer {
+public class weixinMenuServer {
 
-	public static final org.slf4j.Logger log = LoggerFactory.getLogger(WeixinMenuServer.class);
+	public static final org.slf4j.Logger log = LoggerFactory.getLogger(weixinMenuServer.class);
 
 	@Autowired
 	private WeixinConf conf;
@@ -35,6 +34,7 @@ public class WeixinMenuServer {
 
 	@PostConstruct
 	public void initMenu() throws WeixinException, org.weixin4j.WeixinException {
+
 		System.err.println("dfjhdskfhskfgkjsfgsdkjfg-------------");
 		log.info(conf.getAppid() + "\t" + conf.getAppsecret());
 		String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + TokenManager.getToken(conf);
@@ -57,7 +57,7 @@ public class WeixinMenuServer {
 				str.append(line);
 			}
 			log.error("微信返回值为！" + str.toString());
-			if (!JSON.parseObject(str.toString()).get("errcode").equals("0")){
+			if (!JSON.parseObject(str.toString()).get("errmsg").equals("ok")){
 				weixinRequestExecutor.post(url,param);
 				log.error("重新发起请求");
 			}
