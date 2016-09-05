@@ -16,7 +16,7 @@ import java.util.Hashtable;
 public class TokenManager {
 	public static final Logger log = LoggerFactory.getLogger(TokenManager.class);
 
-	static Hashtable<String, OAuthToken> token = new Hashtable();
+	final static Hashtable<String, OAuthToken> token = new Hashtable();
 	private static  Weixin weixin = new Weixin();
 
 
