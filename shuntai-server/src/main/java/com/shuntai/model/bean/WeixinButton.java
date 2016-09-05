@@ -1,7 +1,6 @@
 package com.shuntai.model.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.foxinmy.weixin4j.type.ButtonType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,4 +88,9 @@ public class WeixinButton {
 	public String toString() {
 		return "Button [name=" + this.name + ", type=" + this.type + ", content=" + this.url + ", extra=" + this.extra + ", subs=" + this.subs + "]";
 	}
+
+
+
+
+
 }

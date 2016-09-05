@@ -1,11 +1,8 @@
 package com.shuntai.util;
 
-import com.foxinmy.weixin4j.model.Token;
-import com.shuntai.mapper.TokenMapper;
 import com.shuntai.model.bean.WeixinConf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.weixin4j.Weixin;
 import org.weixin4j.WeixinException;
 import org.weixin4j.http.OAuthToken;
@@ -23,13 +20,11 @@ public class TokenManager {
 	private static  Weixin weixin = new Weixin();
 
 
-//	@Autowired(required=true)
-//	private TokenMapper tokenMapper;
 
 	public static String getToken(WeixinConf conf) throws WeixinException {
 
 
-		if (token.isEmpty() || isExpired()){
+		if (token.isEmpty() || token.get("token").isExprexpired()){
 
 			token.put("token", weixin.login(conf.getAppid(), conf.getAppsecret()));
 			log.info("申请新的token ：" + token.get("token").toString());
@@ -39,7 +34,4 @@ public class TokenManager {
 
 
 
-	public static Boolean isExpired(){
-		return !(token.get("token").getCreate_time() + 7200l > System.currentTimeMillis());
-	}
 }

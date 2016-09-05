@@ -1,21 +1,17 @@
 package com.shuntai.server;
 
 import com.alibaba.fastjson.JSON;
-import com.foxinmy.weixin4j.exception.WeixinException;
-import com.foxinmy.weixin4j.http.weixin.WeixinRequestExecutor;
-import com.foxinmy.weixin4j.http.weixin.WeixinResponse;
-import com.foxinmy.weixin4j.type.ButtonType;
+import com.shuntai.model.bean.ButtonType;
 import com.shuntai.model.bean.WeixinButton;
 import com.shuntai.model.bean.WeixinConf;
 import com.shuntai.util.TokenManager;
+import net.sf.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.weixin4j.http.HttpsClient;
 
 import javax.annotation.PostConstruct;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,55 +28,20 @@ public class weixinMenuServer {
 	private WeixinConf conf;
 
 
-	@PostConstruct
-	public void initMenu() throws WeixinException, org.weixin4j.WeixinException {
 
-		System.err.println("dfjhdskfhskfgkjsfgsdkjfg-------------");
+	public void initMenu() throws org.weixin4j.WeixinException {
+
 		log.info(conf.getAppid() + "\t" + conf.getAppsecret());
 		String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + TokenManager.getToken(conf);
-		String param = getMenu();
-		WeixinRequestExecutor weixinRequestExecutor = new WeixinRequestExecutor();
 
-		WeixinResponse weixinResponse = weixinRequestExecutor.post(url,param);
+        HttpsClient httpsClient = new HttpsClient();
+        String responseData = httpsClient.post(url, getMenu()).asString();
 
-
-
-		String result = "";
-		BufferedReader in = null;
-		StringBuilder str = new StringBuilder();
-		try {
-			// 定义BufferedReader输入流来读取URL的响应
-			in = new BufferedReader(
-					new InputStreamReader(weixinResponse.getBody()));
-			String line;
-			while ((line = in.readLine()) != null) {
-				str.append(line);
-			}
-			log.error("微信返回值为！" + str.toString());
-			if (!JSON.parseObject(str.toString()).get("errmsg").equals("ok")){
-				weixinRequestExecutor.post(url,param);
-				log.error("重新发起请求");
-			}
-
-		} catch (Exception e) {
-
-
-			log.error("发送 POST 请求出现异常！" + e);
-		}
-		//使用finally块来关闭输出流、输入流
-		finally{
-			try{
-				if(in!=null){
-					in.close();
-				}
-			}
-			catch(IOException ex){
-				log.error("关闭流出现异常！" + ex);
-			}
-		}
-
-
-
+        log.info("微信返回值为！" + responseData);
+        if (!JSON.parseObject(responseData).get("errmsg").equals("ok")){
+            httpsClient.post(url, getMenu());
+            log.error("重新发起请求");
+        }
 	}
 
 
@@ -90,7 +51,7 @@ public class weixinMenuServer {
 
 
 
-	public String getMenu(){
+	public JSONObject getMenu(){
 
 		Map<String, WeixinButton[]> map = new HashMap< String, WeixinButton[]>();
 		map.put("button", new WeixinButton[]{
@@ -107,7 +68,9 @@ public class weixinMenuServer {
 						new WeixinButton("子菜单32", "https://atom.io/", ButtonType.view),
 						new WeixinButton("子菜单33", "https://atom.io/", ButtonType.view))
 		});
-		return JSON.toJSONString(map);
+		return JSONObject.fromObject(map);
 	}
+
+
 
 }
