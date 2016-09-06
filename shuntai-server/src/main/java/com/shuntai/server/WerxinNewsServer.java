@@ -63,19 +63,20 @@ public class WerxinNewsServer {
         InputMessage inputMsg = (InputMessage) xs.fromXML(xmlMsg.toString());
         // 取得消息类型
         String msgType = inputMsg.getMsgType();
+        StringBuilder str = new StringBuilder();
 
         if (msgType.equals(MsgType.Text.toString())) {
             //文本消息
-            System.out.println("开发者微信号：" + inputMsg.getToUserName());
-            System.out.println("发送方帐号：" + inputMsg.getFromUserName());
-            System.out.println("消息创建时间：" + inputMsg.getCreateTime());
-            System.out.println("消息内容：" + inputMsg.getContent());
-            System.out.println("消息Id：" + inputMsg.getMsgId());
+            str.append("开发者微信号：" + inputMsg.getToUserName() + "<br/>");
+            str.append("发送方帐号：" + inputMsg.getFromUserName() + "<br/>");
+            str.append("消息创建时间：" + inputMsg.getCreateTime() + "<br/>");
+            str.append("消息内容：" + inputMsg.getContent() + "<br/>");
+            str.append("消息Id：" + inputMsg.getMsgId() + "<br/>");
         }
 
         PrintWriter out = response.getWriter();
         //测试，原样返回文本信息
-        out.write(inputMsg.getContent());
+        out.write(str.toString());
         out.close();
     }
 
