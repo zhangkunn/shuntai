@@ -1,5 +1,6 @@
 <!-- Logback configuration. See http://logback.qos.ch/manual/index.html -->
 <configuration scan="true" scanPeriod="10 seconds">
+    <property name="LOG_PATH" value="logs" />
     <include resource="org/springframework/boot/logging/logback/base.xml" />
 
     <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
