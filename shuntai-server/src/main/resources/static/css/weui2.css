@@ -346,6 +346,10 @@ a:active {
   width: 85%;
   margin: 0;
 }
+.row .col-84 {
+    width: 80%;
+    margin-left: 4%;
+}
 .row .col-80 {
   width: 76%;
   margin-left: 4%;
