@@ -29,9 +29,17 @@ public class TestController{
     public String hello(){
         return "index";
     }
+    @RequestMapping(value = "/index")
+    public String hello1(){
+        return "index";
+    }
+    @RequestMapping(value = "/index.html")
+    public String hello2(){
+        return "index";
+    }
 
 
-    @RequestMapping(value = "/test1")
+    @RequestMapping(value = "/home")
     public String test1(){
         return "home";
     }
