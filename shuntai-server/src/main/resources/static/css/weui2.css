@@ -483,8 +483,8 @@ a:active {
     margin: 0;
   }
   .row .col-80 {
-    width: 78%;
-    margin-left: 2%;
+    width: 76%;
+    margin-left: 4%;
   }
   .row.no-gutter .col-80 {
     width: 80%;

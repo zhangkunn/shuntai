@@ -37,7 +37,10 @@ public class TestController{
     public String hello2(){
         return "index";
     }
-
+    @RequestMapping(value = "/my")
+    public String my(){
+        return "my";
+    }
 
     @RequestMapping(value = "/home")
     public String test1(){
